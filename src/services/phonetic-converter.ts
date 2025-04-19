@@ -1,3 +1,4 @@
+"use server";
 /**
  * Represents a word and its phonetic transcription.
  */
@@ -29,54 +30,31 @@ export interface PhoneticResponse {
  * @returns A promise that resolves to a PhoneticResponse object.
  */
 export async function convertToPhonetic(text: string): Promise<PhoneticResponse> {
-  // TODO: Implement this by calling an API.
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  return {
-    phonetic: [
-      {
-        text: 'i',
-        phonetic: '/ˈa‍ɪ/'
-      },
-      {
-        text: 'am',
-        phonetic: 'am'
-      },
-      {
-        text: 'the',
-        phonetic: '/ðə, ði/'
-      },
-      {
-        text: 'boy',
-        phonetic: '/bˈɔ‍ɪ/'
-      },
-      {
-        text: 'here',
-        phonetic: '/hˈi‍ə/'
-      },
-      {
-        text: 'your',
-        phonetic: '/jˈɔː/'
-      },
-      {
-        text: 'power',
-        phonetic: '/pˈa‍ʊɐ/'
-      },
-      {
-        text: 'a',
-        phonetic: 'a'
-      },
-      {
-        text: 'tree',
-        phonetic: '/tɹˈiː/'
-      },
-      {
-        text: 'and',
-        phonetic: '/ˈænd/'
-      },
-      {
-        text: 'water',
-        phonetic: '/wˈɔːtɐ/'
-      }
-    ]
-  };
+    const raw = JSON.stringify({
+        "text": text
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow" as const
+    };
+
+    try {
+        const response = await fetch("https://my-phonetic-worker.pk9009895.workers.dev/api/convert", requestOptions);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json() as PhoneticResponse;
+        return result;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }

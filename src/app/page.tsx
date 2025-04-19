@@ -5,6 +5,7 @@ import { convertToPhonetic, PhoneticPair } from "@/services/phonetic-converter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 const itemsPerPage = 5;
 
@@ -13,6 +14,7 @@ export default function Home() {
   const [phoneticPairs, setPhoneticPairs] = useState<PhoneticPair[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+    const { toast } = useToast();
 
   const totalPages = Math.ceil(phoneticPairs.length / itemsPerPage);
 
@@ -26,13 +28,17 @@ export default function Home() {
       const response = await convertToPhonetic(inputText);
       setPhoneticPairs(response.phonetic);
       setCurrentPage(0); // Reset to the first page after conversion
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error converting text:", error);
-      // TODO: Display error message to the user using useToast hook
+      toast({
+            title: "Error converting text",
+            description: error.message || "Failed to convert text. Please try again.",
+            variant: "destructive",
+          });
     } finally {
       setIsLoading(false);
     }
-  }, [inputText]);
+  }, [inputText, toast]);
 
   const goToPreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
