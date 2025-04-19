@@ -1,4 +1,4 @@
-"use server";
+'use server';
 /**
  * Represents a word and its phonetic transcription.
  */
@@ -58,3 +58,4 @@ export async function convertToPhonetic(text: string): Promise<PhoneticResponse>
         throw error;
     }
 }
+

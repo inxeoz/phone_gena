@@ -78,7 +78,7 @@ export default function Home() {
             {currentPairs.map((pair, index) => (
               <div key={index} className="flex flex-col rounded-md border shadow-sm">
                 <div className="px-4 py-2 font-bold">{pair.text}</div>
-                <div className="px-4 py-2 font-mono bg-muted">{pair.phonetic}</div>
+                <div className="px-4 py-2 font-mono bg-secondary">{pair.phonetic}</div>
               </div>
             ))}
           </div>
@@ -106,3 +106,4 @@ export default function Home() {
     </div>
   );
 }
+
