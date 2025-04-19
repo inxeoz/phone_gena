@@ -10,13 +10,9 @@ import { cn } from "@/lib/utils";
 
 const itemsPerPage = 5;
 
-// Function to generate a random neutral background color
-const getRandomNeutralColor = () => {
-  const hue = 0; // Neutral hues
-  const saturation = 0; // Low saturation for neutral colors
-  const lightness = Math.floor(Math.random() * 20) + 90; // Lightness between 90 and 100 for very light neutral colors
-  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-};
+// Fixed neutral background colors
+const textColor = 'hsl(0, 0%, 95%)';
+const phoneticColor = 'hsl(0, 0%, 90%)';
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -84,17 +80,12 @@ export default function Home() {
       {phoneticPairs.length > 0 && (
         <div className="max-w-3xl w-full flex flex-col gap-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {currentPairs.map((pair, index) => {
-              const textBackgroundColor = getRandomNeutralColor();
-              const phoneticBackgroundColor = getRandomNeutralColor();
-
-              return (
-                <div key={index} className="flex flex-col rounded-md border shadow-sm">
-                  <div className="px-4 py-2 font-bold" style={{ backgroundColor: textBackgroundColor }}>{pair.text}</div>
-                  <div className="px-4 py-2 font-mono" style={{ backgroundColor: phoneticBackgroundColor }}>{pair.phonetic}</div>
-                </div>
-              );
-            })}
+            {currentPairs.map((pair, index) => (
+              <div key={index} className="flex flex-col rounded-md border shadow-sm">
+                <div className="px-4 py-2 font-bold" style={{ backgroundColor: textColor }}>{pair.text}</div>
+                <div className="px-4 py-2 font-mono" style={{ backgroundColor: phoneticColor }}>{pair.phonetic}</div>
+              </div>
+            ))}
           </div>
 
           <div className="flex justify-between">
