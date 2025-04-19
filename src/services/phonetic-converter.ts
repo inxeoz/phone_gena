@@ -45,7 +45,7 @@ export async function convertToPhonetic(text: string): Promise<PhoneticResponse>
     };
 
     try {
-        const response = await fetch("https://my-phonetic-worker.pk9009895.workers.dev/api/convert", requestOptions);
+        const response = await fetch("https://my-phonetic-worker-github.pk9009895.workers.dev//api/convert", requestOptions);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
