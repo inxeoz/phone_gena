@@ -84,12 +84,17 @@ export default function Home() {
       {phoneticPairs.length > 0 && (
         <div className="max-w-3xl w-full flex flex-col gap-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {currentPairs.map((pair, index) => (
-              <div key={index} className="flex flex-col rounded-md border shadow-sm">
-                <div className="px-4 py-2 font-bold" style={{ backgroundColor: getRandomNeutralColor() }}>{pair.text}</div>
-                <div className="px-4 py-2 font-mono" style={{ backgroundColor: getRandomNeutralColor() }}>{pair.phonetic}</div>
-              </div>
-            ))}
+            {currentPairs.map((pair, index) => {
+              const textBackgroundColor = getRandomNeutralColor();
+              const phoneticBackgroundColor = getRandomNeutralColor();
+
+              return (
+                <div key={index} className="flex flex-col rounded-md border shadow-sm">
+                  <div className="px-4 py-2 font-bold" style={{ backgroundColor: textBackgroundColor }}>{pair.text}</div>
+                  <div className="px-4 py-2 font-mono" style={{ backgroundColor: phoneticBackgroundColor }}>{pair.phonetic}</div>
+                </div>
+              );
+            })}
           </div>
 
           <div className="flex justify-between">
