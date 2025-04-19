@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 
 const itemsPerPage = 5;
 
@@ -77,7 +78,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {currentPairs.map((pair, index) => (
               <div key={index} className="flex flex-col rounded-md border shadow-sm">
-                <div className="px-4 py-2 font-bold">{pair.text}</div>
+                <div className="px-4 py-2 font-bold bg-muted">{pair.text}</div>
                 <div className="px-4 py-2 font-mono bg-secondary">{pair.phonetic}</div>
               </div>
             ))}
@@ -106,4 +107,5 @@ export default function Home() {
     </div>
   );
 }
+
 
