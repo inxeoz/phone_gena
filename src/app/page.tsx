@@ -3,7 +3,6 @@
 import { useState, useCallback } from "react";
 import { convertToPhonetic, PhoneticPair } from "@/services/phonetic-converter";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
@@ -11,7 +10,7 @@ import { cn } from "@/lib/utils";
 const itemsPerPage = 5;
 
 // Fixed neutral background colors
-const textColorClasses = ['bg-emerald-100', 'bg-orange-100', 'bg-blue-100', 'bg-yellow-100', 'bg-purple-100']; // Green and orange
+const textColorClasses = ['bg-emerald-100', 'bg-orange-100', 'bg-blue-100', 'bg-yellow-100', 'bg-purple-100'];
 const phoneticColor = 'bg-muted';
 
 export default function Home() {
@@ -32,7 +31,7 @@ export default function Home() {
     try {
       const response = await convertToPhonetic(inputText);
       setPhoneticPairs(response.phonetic);
-      setCurrentPage(0); // Reset to the first page after conversion
+      setCurrentPage(0);
     } catch (error: any) {
       console.error("Error converting text:", error);
       toast({
@@ -109,4 +108,3 @@ export default function Home() {
     </div>
   );
 }
-
