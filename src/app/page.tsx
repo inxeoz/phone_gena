@@ -10,6 +10,14 @@ import { cn } from "@/lib/utils";
 
 const itemsPerPage = 5;
 
+// Function to generate a random neutral background color
+const getRandomNeutralColor = () => {
+  const hue = 0; // Neutral hues
+  const saturation = 0; // Low saturation for neutral colors
+  const lightness = Math.floor(Math.random() * 20) + 90; // Lightness between 90 and 100 for very light neutral colors
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+};
+
 export default function Home() {
   const [inputText, setInputText] = useState("");
   const [phoneticPairs, setPhoneticPairs] = useState<PhoneticPair[]>([]);
@@ -78,8 +86,8 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {currentPairs.map((pair, index) => (
               <div key={index} className="flex flex-col rounded-md border shadow-sm">
-                <div className="px-4 py-2 font-bold bg-muted">{pair.text}</div>
-                <div className="px-4 py-2 font-mono bg-secondary">{pair.phonetic}</div>
+                <div className="px-4 py-2 font-bold" style={{ backgroundColor: getRandomNeutralColor() }}>{pair.text}</div>
+                <div className="px-4 py-2 font-mono" style={{ backgroundColor: getRandomNeutralColor() }}>{pair.phonetic}</div>
               </div>
             ))}
           </div>
@@ -107,5 +115,3 @@ export default function Home() {
     </div>
   );
 }
-
-
