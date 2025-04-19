@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const itemsPerPage = 5;
 
 // Fixed neutral background colors
-const textColorClasses = ['bg-emerald-100', 'bg-orange-100']; // Green and orange
+const textColorClasses = ['bg-emerald-100', 'bg-orange-100', 'bg-blue-100', 'bg-yellow-100', 'bg-purple-100']; // Green and orange
 const phoneticColor = 'bg-muted';
 
 export default function Home() {
@@ -109,3 +109,4 @@ export default function Home() {
     </div>
   );
 }
+
