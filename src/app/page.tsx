@@ -11,8 +11,8 @@ import { cn } from "@/lib/utils";
 const itemsPerPage = 5;
 
 // Fixed neutral background colors
-const textColor = 'hsl(0, 0%, 95%)';
-const phoneticColor = 'hsl(0, 0%, 90%)';
+const textColor = 'bg-secondary';
+const phoneticColor = 'bg-muted';
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -72,7 +72,7 @@ export default function Home() {
       <Button
         onClick={convertTextToPhonetic}
         disabled={isLoading}
-        className="bg-accent text-white rounded-md shadow-sm"
+        className="bg-accent text-primary-foreground rounded-md shadow-sm"
       >
         {isLoading ? "Converting..." : "Convert to Phonetic"}
       </Button>
@@ -82,8 +82,8 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {currentPairs.map((pair, index) => (
               <div key={index} className="flex flex-col rounded-md border shadow-sm">
-                <div className="px-4 py-2 font-bold" style={{ backgroundColor: textColor }}>{pair.text}</div>
-                <div className="px-4 py-2 font-mono" style={{ backgroundColor: phoneticColor }}>{pair.phonetic}</div>
+                <div className={cn("px-4 py-2 font-bold", textColor)}>{pair.text}</div>
+                <div className={cn("px-4 py-2 font-mono", phoneticColor)}>{pair.phonetic}</div>
               </div>
             ))}
           </div>
@@ -93,7 +93,6 @@ export default function Home() {
               onClick={goToPreviousPage}
               disabled={currentPage === 0}
               variant="outline"
-              className="bg-secondary text-secondary-foreground rounded-md shadow-sm"
             >
               Previous
             </Button>
@@ -101,7 +100,6 @@ export default function Home() {
               onClick={goToNextPage}
               disabled={currentPage === totalPages - 1}
               variant="outline"
-              className="bg-secondary text-secondary-foreground rounded-md shadow-sm"
             >
               Next
             </Button>
