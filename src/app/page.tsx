@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const itemsPerPage = 5;
 
 // Fixed neutral background colors
-const textColor = 'bg-secondary';
+const textColorClasses = ['bg-emerald-100', 'bg-orange-100']; // Green and orange
 const phoneticColor = 'bg-muted';
 
 export default function Home() {
@@ -82,7 +82,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {currentPairs.map((pair, index) => (
               <div key={index} className="flex flex-col rounded-md border shadow-sm">
-                <div className={cn("px-4 py-2 font-bold", textColor)}>{pair.text}</div>
+                <div className={cn("px-4 py-2 font-bold", textColorClasses[index % textColorClasses.length])}>{pair.text}</div>
                 <div className={cn("px-4 py-2 font-mono", phoneticColor)}>{pair.phonetic}</div>
               </div>
             ))}
